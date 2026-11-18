@@ -1,0 +1,1380 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECA Digital</title>
+
+<style>
+:root {
+    --azul: #0864d9;
+    --azul-escuro: #073b83;
+    --azul-claro: #eaf4ff;
+    --fundo: #f3f7fd;
+    --texto: #183153;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+}
+
+header {
+    background: linear-gradient(120deg, #0755c9, #1685f8);
+    color: white;
+    padding: 20px 5%;
+}
+
+.topo {
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #aee2ff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+nav button {
+    border: 1px solid #ffffff55;
+    background: #ffffff18;
+    color: white;
+    padding: 10px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav button:hover {
+    background: white;
+    color: var(--azul);
+}
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 25px 18px 50px;
+}
+
+.tela {
+    display: none;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+.hero {
+    background: linear-gradient(120deg, #0755c9, #2499ff);
+    color: white;
+    padding: 42px 30px;
+    border-radius: 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px #0755c922;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 5vw, 43px);
+    margin-bottom: 13px;
+}
+
+.hero p {
+    line-height: 1.7;
+    max-width: 700px;
+}
+
+.botao {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.botao:hover {
+    background: #0349a8;
+}
+
+.botao.claro {
+    background: white;
+    color: var(--azul);
+}
+
+.botao.perigo {
+    background: #d94343;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 17px;
+    margin: 20px 0;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 17px;
+    box-shadow: 0 4px 18px #173d7010;
+    border: 1px solid #e3edfa;
+    margin-bottom: 17px;
+}
+
+.card h2, .card h3 {
+    color: var(--azul);
+    margin-bottom: 12px;
+}
+
+.card p {
+    line-height: 1.7;
+    color: #52657e;
+}
+
+.icone {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    margin: 20px 0 12px;
+    color: var(--azul);
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 9px 0;
+    border: 1px solid #cbd9eb;
+    border-radius: 9px;
+    font-size: 15px;
+    background: white;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.perfil {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.perfil strong {
+    color: var(--azul);
+}
+
+.pergunta {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.opcao {
+    display: block;
+    background: #f0f6ff;
+    border: 2px solid #d8e7fb;
+    padding: 14px;
+    border-radius: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    color: var(--texto);
+    font-size: 15px;
+}
+
+.opcao:hover {
+    border-color: #1685f8;
+    background: #e4f1ff;
+}
+
+.opcao:disabled {
+    cursor: default;
+}
+
+.aviso {
+    background: #fff6dc;
+    border: 1px solid #f0d58a;
+    padding: 15px;
+    border-radius: 12px;
+    color: #76540b;
+    margin: 15px 0;
+}
+
+.item-lista {
+    padding: 13px;
+    border-bottom: 1px solid #e1e8f2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.item-lista button {
+    margin-top: 0;
+}
+
+#jogoCanvas {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 20px auto;
+    background: linear-gradient(#c9eaff, #eef8ff);
+    border: 3px solid #1678df;
+    border-radius: 13px;
+}
+
+footer {
+    background: var(--azul-escuro);
+    color: white;
+    text-align: center;
+    padding: 28px;
+}
+
+footer p {
+    margin-top: 8px;
+    color: #c9e3ff;
+}
+
+.pequeno {
+    color: #65778e;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+#mensagemConta, #resultado, #erroProfessor {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #e1e8f2;
+    margin: 22px 0;
+}
+
+@media(max-width:600px) {
+    .topo {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav button {
+        font-size: 12px;
+        padding: 9px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="topo">
+        <div class="logo">🛡️ ECA <span>Digital</span></div>
+
+        <nav>
+            <button onclick="mostrar('inicio')">Início</button>
+            <button onclick="mostrar('direitos')">Direitos</button>
+            <button onclick="mostrar('jogos')">Jogos</button>
+            <button onclick="mostrar('professores')">Professores</button>
+            <button onclick="mostrar('conta')">Minha conta</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- INÍCIO -->
+<section id="inicio" class="tela ativa">
+
+    <div class="perfil">
+        <div>👤 Aluno: <strong id="nomeJogador">Visitante</strong></div>
+        <div>⭐ Pontos: <strong id="pontosTopo">0</strong></div>
+    </div>
+
+    <div class="hero">
+        <h1>Seus direitos também existem na internet!</h1>
+        <p>
+            Conheça seus direitos, aprenda a se proteger no mundo digital
+            e participe de jogos educativos.
+        </p>
+        <button class="botao claro" onclick="mostrar('jogos')">
+            Começar a jogar 🎮
+        </button>
+    </div>
+
+    <h2>Explore o ECA Digital</h2>
+
+    <div class="grid">
+        <div class="card">
+            <div class="icone">🔒</div>
+            <h3>Privacidade</h3>
+            <p>Aprenda a proteger suas informações e seus dados pessoais.</p>
+        </div>
+
+        <div class="card">
+            <div class="icone">🤝</div>
+            <h3>Respeito</h3>
+            <p>Descubra como combater o bullying e respeitar outras pessoas.</p>
+        </div>
+
+        <div class="card">
+            <div class="icone">📱</div>
+            <h3>Segurança</h3>
+            <p>Aprenda a identificar riscos e navegar com mais segurança.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📚 O que é o ECA Digital?</h2>
+        <p>
+            O ECA Digital é a Lei nº 15.211/2025. Ela estabelece
+            regras para fortalecer a proteção de crianças e adolescentes
+            no ambiente digital, incluindo privacidade, segurança e
+            prevenção de situações de violência.
+        </p>
+    </div>
+
+</section>
+
+<!-- DIREITOS -->
+<section id="direitos" class="tela">
+
+    <div class="hero">
+        <h1>📚 Conheça seus direitos</h1>
+        <p>Informação também é uma forma de proteção!</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icone">🔐</div>
+            <h3>Proteção de dados</h3>
+            <p>
+                Seus dados pessoais devem ser tratados com cuidado.
+                Pense antes de compartilhar informações.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icone">🚫</div>
+            <h3>Proteção contra violência</h3>
+            <p>
+                Crianças e adolescentes devem ser protegidos contra
+                exploração, abuso e outras formas de violência online.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icone">💬</div>
+            <h3>Respeito na internet</h3>
+            <p>
+                Ameaças, humilhações e perseguições não são brincadeira.
+                Todos merecem respeito.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icone">👨‍👩‍👧</div>
+            <h3>Orientação</h3>
+            <p>
+                Família, escola, empresas e poder público possuem
+                responsabilidades na proteção de crianças e adolescentes.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icone">🧠</div>
+            <h3>Bem-estar digital</h3>
+            <p>
+                É importante equilibrar o uso da tecnologia com
+                atividades fora das telas.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icone">📢</div>
+            <h3>Peça ajuda</h3>
+            <p>
+                Se algo causar medo ou desconforto na internet,
+                procure um adulto de confiança.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h3>💡 Dica importante</h3>
+        <p>
+            Nunca compartilhe senhas, endereço ou localização
+            com pessoas desconhecidas.
+        </p>
+    </div>
+
+</section>
+
+<!-- JOGOS -->
+<section id="jogos" class="tela">
+
+    <div class="hero">
+        <h1>🎮 Central de jogos</h1>
+        <p>Aprenda, complete desafios e conquiste pontos!</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icone">🧠</div>
+            <h3>Desafio Digital</h3>
+            <p>Responda perguntas sobre direitos e segurança digital.</p>
+            <button class="botao" onclick="iniciarQuiz()">Jogar agora</button>
+        </div>
+
+        <div class="card">
+            <div class="icone">🏃</div>
+            <h3>Midas Run</h3>
+            <p>Ajude Midas a desviar dos obstáculos e coletar estrelas.</p>
+            <button class="botao" onclick="abrirMidas()">Jogar agora</button>
+        </div>
+
+    </div>
+
+    <div id="areaQuiz" class="card" style="display:none">
+        <h2>🧠 Desafio Digital</h2>
+        <p id="numeroPergunta"></p>
+        <div class="pergunta" id="textoPergunta"></div>
+        <div id="opcoes"></div>
+        <div id="resultado"></div>
+        <button class="botao" id="proxima" style="display:none"
+        onclick="proximaPergunta()">Próxima pergunta</button>
+    </div>
+
+    <div id="areaMidas" class="card" style="display:none">
+        <h2>🏃 Midas Run</h2>
+        <p>Use ESPAÇO ou clique em PULAR para desviar dos obstáculos.</p>
+
+        <canvas id="jogoCanvas" width="700" height="260"></canvas>
+
+        <div style="text-align:center">
+            <button class="botao" onclick="pular()">⬆️ PULAR</button>
+            <button class="botao" onclick="iniciarMidas()">🔄 Reiniciar</button>
+        </div>
+
+        <p id="pontuacaoMidas" style="text-align:center;margin-top:12px">
+            Pontos: 0
+        </p>
+    </div>
+
+</section>
+
+<!-- PROFESSORES -->
+<section id="professores" class="tela">
+
+    <div class="hero">
+        <h1>👨‍🏫 Área dos professores</h1>
+        <p>Gerenciamento dos conteúdos e atividades do ECA Digital.</p>
+    </div>
+
+    <div id="loginProfessor" class="card">
+        <h2>🔐 Acesso administrativo</h2>
+        <p>Digite a senha para entrar.</p>
+
+        <input id="senhaProfessor" type="password"
+        placeholder="Senha de acesso">
+
+        <button class="botao" onclick="entrarProfessor()">
+            Entrar no painel
+        </button>
+
+        <p id="erroProfessor"></p>
+    </div>
+
+    <div id="painelProfessor" style="display:none">
+
+        <div class="perfil">
+            <strong>👨‍🏫 Painel administrativo</strong>
+            <button class="botao perigo" onclick="sairProfessor()">Sair</button>
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="icone">👥</div>
+                <h3>Professores cadastrados</h3>
+                <h2 id="totalProfessores">0</h2>
+            </div>
+
+            <div class="card">
+                <div class="icone">❓</div>
+                <h3>Perguntas</h3>
+                <h2 id="totalPerguntas">0</h2>
+            </div>
+
+            <div class="card">
+                <div class="icone">⭐</div>
+                <h3>Pontos neste navegador</h3>
+                <h2 id="totalPontos">0</h2>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h2>👥 Gerenciar professores</h2>
+            <p>Cadastre os nomes dos professores autorizados pela escola.</p>
+
+            <input id="nomeNovoProfessor" placeholder="Nome do professor">
+
+            <button class="botao" onclick="adicionarProfessor()">
+                Adicionar professor
+            </button>
+
+            <div id="listaProfessores"></div>
+        </div>
+
+        <div class="card">
+            <h2>🧠 Gerenciar perguntas</h2>
+
+            <label>Enunciado</label>
+            <input id="novaPergunta" placeholder="Digite a pergunta">
+
+            <label>Alternativa A</label>
+            <input id="respostaA" placeholder="Alternativa A">
+
+            <label>Alternativa B</label>
+            <input id="respostaB" placeholder="Alternativa B">
+
+            <label>Alternativa C</label>
+            <input id="respostaC" placeholder="Alternativa C">
+
+            <label>Resposta correta</label>
+            <select id="respostaCorreta">
+                <option value="0">Alternativa A</option>
+                <option value="1">Alternativa B</option>
+                <option value="2">Alternativa C</option>
+            </select>
+
+            <button class="botao" onclick="adicionarPerguntaProfessor()">
+                Salvar pergunta
+            </button>
+
+            <div id="listaPerguntasProfessor"></div>
+        </div>
+
+        <div class="card">
+            <h2>📚 Administração do conteúdo</h2>
+            <p>
+                Utilize esta área para organizar os conteúdos educativos
+                e ampliar os desafios sobre segurança digital.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTA -->
+<section id="conta" class="tela">
+
+    <div class="hero">
+        <h1>👤 Minha conta</h1>
+        <p>Entre com seu apelido para acompanhar seus pontos.</p>
+    </div>
+
+    <div class="card">
+        <h2>Criar conta</h2>
+
+        <input id="novoUsuario" placeholder="Escolha um apelido">
+
+        <button class="botao" onclick="cadastrar()">
+            Cadastrar
+        </button>
+
+        <hr>
+
+        <h2>Entrar</h2>
+
+        <input id="loginUsuario" placeholder="Seu apelido">
+
+        <button class="botao" onclick="entrarAluno()">
+            Entrar
+        </button>
+
+        <p id="mensagemConta"></p>
+
+        <button class="botao perigo" onclick="sairAluno()">
+            Sair da conta
+        </button>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <h3>🛡️ ECA Digital</h3>
+    <p>Conhecimento, respeito e segurança no mundo digital.</p>
+    <p>Projeto educativo escolar.</p>
+</footer>
+
+<script>
+
+// ===================================
+// CONFIGURAÇÃO
+// ===================================
+
+// Altere esta senha para outra de sua escolha.
+const SENHA_PROFESSOR = "eca2026";
+
+// ===================================
+// NAVEGAÇÃO
+// ===================================
+
+function mostrar(id) {
+    document.querySelectorAll(".tela").forEach(tela => {
+        tela.classList.remove("ativa");
+    });
+
+    document.getElementById(id).classList.add("ativa");
+
+    document.getElementById("areaQuiz").style.display = "none";
+    document.getElementById("areaMidas").style.display = "none";
+
+    if (jogando) {
+        jogando = false;
+        cancelAnimationFrame(frame);
+    }
+}
+
+// ===================================
+// CONTAS DOS ALUNOS
+// ===================================
+
+let usuario = localStorage.getItem("ecaUsuario") || "";
+let pontos = Number(localStorage.getItem("ecaPontos") || 0);
+
+function atualizarPerfil() {
+    document.getElementById("nomeJogador").textContent =
+        usuario || "Visitante";
+
+    document.getElementById("pontosTopo").textContent = pontos;
+}
+
+function cadastrar() {
+    const nome = document.getElementById("novoUsuario").value.trim();
+
+    if (nome.length < 3) {
+        alert("Escolha um apelido com pelo menos 3 caracteres.");
+        return;
+    }
+
+    usuario = nome;
+    pontos = 0;
+
+    localStorage.setItem("ecaUsuario", usuario);
+    localStorage.setItem("ecaPontos", pontos);
+
+    atualizarPerfil();
+
+    document.getElementById("mensagemConta").textContent =
+        "Cadastro realizado!";
+}
+
+function entrarAluno() {
+    const nome = document.getElementById("loginUsuario").value.trim();
+
+    if (!nome) {
+        alert("Digite seu apelido.");
+        return;
+    }
+
+    usuario = nome;
+
+    localStorage.setItem("ecaUsuario", usuario);
+    atualizarPerfil();
+
+    document.getElementById("mensagemConta").textContent =
+        "Bem-vindo, " + usuario + "!";
+}
+
+function sairAluno() {
+    usuario = "";
+
+    localStorage.removeItem("ecaUsuario");
+
+    atualizarPerfil();
+
+    document.getElementById("mensagemConta").textContent =
+        "Você saiu da conta.";
+}
+
+function adicionarPontos(valor) {
+    pontos += valor;
+
+    localStorage.setItem("ecaPontos", pontos);
+
+    atualizarPerfil();
+}
+
+// ===================================
+// BANCO DE PERGUNTAS
+// ===================================
+
+const perguntasIniciais = [
+    {
+        pergunta: "O que devemos fazer antes de compartilhar uma foto?",
+        opcoes: [
+            "Compartilhar com qualquer pessoa",
+            "Pensar na privacidade e pedir autorização quando necessário",
+            "Enviar para todos os grupos"
+        ],
+        correta: 1,
+        explicacao: "Respeitar a privacidade é muito importante!"
+    },
+    {
+        pergunta: "O que fazer ao receber uma mensagem suspeita?",
+        opcoes: [
+            "Clicar em todos os links",
+            "Enviar seus dados",
+            "Não clicar e procurar orientação"
+        ],
+        correta: 2,
+        explicacao: "Desconfie de mensagens e links desconhecidos."
+    },
+    {
+        pergunta: "O que é cyberbullying?",
+        opcoes: [
+            "Perseguição ou humilhação usando meios digitais",
+            "Uma brincadeira educativa",
+            "Um jogo de computador"
+        ],
+        correta: 0,
+        explicacao: "Cyberbullying é uma forma de violência."
+    },
+    {
+        pergunta: "Sua senha deve ser:",
+        opcoes: [
+            "Compartilhada com amigos",
+            "Pública",
+            "Privada e difícil de adivinhar"
+        ],
+        correta: 2,
+        explicacao: "Nunca compartilhe sua senha."
+    },
+    {
+        pergunta: "O que fazer se alguém ameaçar você na internet?",
+        opcoes: [
+            "Ficar sozinho com o problema",
+            "Procurar um adulto de confiança",
+            "Enviar mais informações pessoais"
+        ],
+        correta: 1,
+        explicacao: "Pedir ajuda é uma atitude importante."
+    },
+    {
+        pergunta: "O ECA Digital busca:",
+        opcoes: [
+            "Acabar com a internet",
+            "Impedir toda diversão online",
+            "Fortalecer a proteção de crianças e adolescentes no ambiente digital"
+        ],
+        correta: 2,
+        explicacao: "A lei busca fortalecer a proteção no ambiente digital."
+    },
+    {
+        pergunta: "Podemos publicar a foto de outra pessoa sem pensar?",
+        opcoes: [
+            "Não, devemos respeitar a privacidade",
+            "Sim, sempre",
+            "Sim, se for engraçada"
+        ],
+        correta: 0,
+        explicacao: "Respeito também vale para fotos e vídeos."
+    },
+    {
+        pergunta: "Qual é uma atitude segura na internet?",
+        opcoes: [
+            "Informar seu endereço a desconhecidos",
+            "Proteger seus dados pessoais",
+            "Usar a mesma senha em todo lugar"
+        ],
+        correta: 1,
+        explicacao: "Proteger seus dados ajuda a evitar riscos."
+    },
+    {
+        pergunta: "Se um amigo estiver sofrendo bullying online, você deve:",
+        opcoes: [
+            "Compartilhar as ofensas",
+            "Ignorar sempre",
+            "Apoiar o amigo e procurar ajuda"
+        ],
+        correta: 2,
+        explicacao: "Apoio e ajuda fazem diferença."
+    },
+    {
+        pergunta: "A internet deve ser um espaço de:",
+        opcoes: [
+            "Respeito e segurança",
+            "Ameaças e humilhações",
+            "Exposição de dados pessoais"
+        ],
+        correta: 0,
+        explicacao: "Todos merecem respeito também na internet."
+    }
+];
+
+let perguntasSalvas = [];
+
+try {
+    perguntasSalvas = JSON.parse(
+        localStorage.getItem("ecaPerguntas") || "[]"
+    );
+} catch {
+    perguntasSalvas = [];
+}
+
+let perguntas = [...perguntasIniciais, ...perguntasSalvas];
+
+// ===================================
+// DESAFIO DIGITAL
+// ===================================
+
+let listaPerguntas = [];
+let indice = 0;
+let respondeu = false;
+
+function iniciarQuiz() {
+    mostrar("jogos");
+
+    document.getElementById("areaQuiz").style.display = "block";
+    document.getElementById("areaMidas").style.display = "none";
+
+    listaPerguntas = [...perguntas].sort(() => Math.random() - 0.5);
+
+    indice = 0;
+
+    carregarPergunta();
+}
+
+function carregarPergunta() {
+    respondeu = false;
+
+    const p = listaPerguntas[indice];
+
+    document.getElementById("numeroPergunta").textContent =
+        "Pergunta " + (indice + 1) + " de " + listaPerguntas.length;
+
+    document.getElementById("textoPergunta").textContent = p.pergunta;
+
+    document.getElementById("resultado").textContent = "";
+
+    document.getElementById("proxima").style.display = "none";
+
+    const area = document.getElementById("opcoes");
+
+    area.innerHTML = "";
+
+    p.opcoes.forEach((opcao, i) => {
+        const botao = document.createElement("button");
+
+        botao.className = "opcao";
+        botao.textContent = String.fromCharCode(65 + i) + ") " + opcao;
+
+        botao.onclick = () => responder(i);
+
+        area.appendChild(botao);
+    });
+}
+
+function responder(escolha) {
+    if (respondeu) return;
+
+    respondeu = true;
+
+    const p = listaPerguntas[indice];
+
+    const resultado = document.getElementById("resultado");
+
+    document.querySelectorAll(".opcao").forEach(botao => {
+        botao.disabled = true;
+    });
+
+    if (escolha === p.correta) {
+        resultado.textContent =
+            "✅ Correto! +10 pontos. " + p.explicacao;
+
+        resultado.style.color = "#168448";
+
+        adicionarPontos(10);
+    } else {
+        resultado.textContent =
+            "❌ Resposta incorreta. " + p.explicacao;
+
+        resultado.style.color = "#c34b4b";
+    }
+
+    document.getElementById("proxima").style.display = "inline-block";
+}
+
+function proximaPergunta() {
+    indice++;
+
+    if (indice >= listaPerguntas.length) {
+        document.getElementById("textoPergunta").textContent =
+            "🏆 Você terminou o desafio!";
+
+        document.getElementById("numeroPergunta").textContent =
+            "Fim de jogo";
+
+        document.getElementById("opcoes").innerHTML = "";
+
+        document.getElementById("resultado").textContent =
+            "Continue aprendendo sobre seus direitos!";
+
+        document.getElementById("proxima").style.display = "none";
+
+        return;
+    }
+
+    carregarPergunta();
+}
+
+// ===================================
+// ÁREA DOS PROFESSORES
+// ===================================
+
+let professores = [];
+
+try {
+    professores = JSON.parse(
+        localStorage.getItem("ecaProfessores") || "[]"
+    );
+} catch {
+    professores = [];
+}
+
+function entrarProfessor() {
+    const senha = document.getElementById("senhaProfessor").value;
+
+    if (senha === SENHA_PROFESSOR) {
+        document.getElementById("loginProfessor").style.display = "none";
+
+        document.getElementById("painelProfessor").style.display = "block";
+
+        document.getElementById("erroProfessor").textContent = "";
+
+        atualizarPainelProfessor();
+    } else {
+        document.getElementById("erroProfessor").textContent =
+            "Senha incorreta!";
+    }
+}
+
+function sairProfessor() {
+    document.getElementById("loginProfessor").style.display = "block";
+
+    document.getElementById("painelProfessor").style.display = "none";
+
+    document.getElementById("senhaProfessor").value = "";
+}
+
+function adicionarProfessor() {
+    const campo = document.getElementById("nomeNovoProfessor");
+
+    const nome = campo.value.trim();
+
+    if (!nome) {
+        alert("Digite o nome do professor.");
+        return;
+    }
+
+    professores.push(nome);
+
+    localStorage.setItem(
+        "ecaProfessores",
+        JSON.stringify(professores)
+    );
+
+    campo.value = "";
+
+    atualizarPainelProfessor();
+}
+
+function removerProfessor(indice) {
+    professores.splice(indice, 1);
+
+    localStorage.setItem(
+        "ecaProfessores",
+        JSON.stringify(professores)
+    );
+
+    atualizarPainelProfessor();
+}
+
+function adicionarPerguntaProfessor() {
+    const pergunta = document.getElementById("novaPergunta").value.trim();
+
+    const a = document.getElementById("respostaA").value.trim();
+
+    const b = document.getElementById("respostaB").value.trim();
+
+    const c = document.getElementById("respostaC").value.trim();
+
+    const correta = Number(
+        document.getElementById("respostaCorreta").value
+    );
+
+    if (!pergunta || !a || !b || !c) {
+        alert("Preencha a pergunta e as três alternativas.");
+        return;
+    }
+
+    const novaPergunta = {
+        pergunta: pergunta,
+        opcoes: [a, b, c],
+        correta: correta,
+        explicacao: "Continue aprendendo sobre segurança digital!"
+    };
+
+    perguntasSalvas.push(novaPergunta);
+
+    perguntas.push(novaPergunta);
+
+    localStorage.setItem(
+        "ecaPerguntas",
+        JSON.stringify(perguntasSalvas)
+    );
+
+    document.getElementById("novaPergunta").value = "";
+    document.getElementById("respostaA").value = "";
+    document.getElementById("respostaB").value = "";
+    document.getElementById("respostaC").value = "";
+
+    atualizarPainelProfessor();
+
+    alert("Pergunta salva com sucesso!");
+}
+
+function removerPergunta(indice) {
+    const pergunta = perguntasSalvas[indice];
+
+    const posicao = perguntas.indexOf(pergunta);
+
+    if (posicao !== -1) {
+        perguntas.splice(posicao, 1);
+    }
+
+    perguntasSalvas.splice(indice, 1);
+
+    localStorage.setItem(
+        "ecaPerguntas",
+        JSON.stringify(perguntasSalvas)
+    );
+
+    atualizarPainelProfessor();
+}
+
+function atualizarPainelProfessor() {
+    document.getElementById("totalProfessores").textContent =
+        professores.length;
+
+    document.getElementById("totalPerguntas").textContent =
+        perguntas.length;
+
+    document.getElementById("totalPontos").textContent = pontos;
+
+    const lista = document.getElementById("listaProfessores");
+
+    lista.innerHTML = "";
+
+    professores.forEach((nome, i) => {
+        const item = document.createElement("div");
+
+        item.className = "item-lista";
+
+        const texto = document.createElement("span");
+
+        texto.textContent = "👤 " + nome;
+
+        const botao = document.createElement("button");
+
+        botao.className = "botao perigo";
+        botao.textContent = "Remover";
+
+        botao.onclick = () => removerProfessor(i);
+
+        item.append(texto, botao);
+
+        lista.appendChild(item);
+    });
+
+    const listaPerguntas = document.getElementById(
+        "listaPerguntasProfessor"
+    );
+
+    listaPerguntas.innerHTML = "";
+
+    perguntasSalvas.forEach((p, i) => {
+        const item = document.createElement("div");
+
+        item.className = "item-lista";
+
+        const texto = document.createElement("span");
+
+        texto.textContent = "❓ " + p.pergunta;
+
+        const botao = document.createElement("button");
+
+        botao.className = "botao perigo";
+        botao.textContent = "Remover";
+
+        botao.onclick = () => removerPergunta(i);
+
+        item.append(texto, botao);
+
+        listaPerguntas.appendChild(item);
+    });
+}
+
+// ===================================
+// MIDAS RUN
+// ===================================
+
+const canvas = document.getElementById("jogoCanvas");
+const ctx = canvas.getContext("2d");
+
+let midas;
+let obstaculos;
+let estrelas;
+let pontosMidas;
+let jogando = false;
+let frame;
+let velocidade;
+
+function abrirMidas() {
+    mostrar("jogos");
+
+    document.getElementById("areaMidas").style.display = "block";
+
+    document.getElementById("areaQuiz").style.display = "none";
+
+    iniciarMidas();
+}
+
+function iniciarMidas() {
+    cancelAnimationFrame(frame);
+
+    midas = {
+        x: 65,
+        y: 170,
+        largura: 35,
+        altura: 50,
+        velocidadeY: 0,
+        noChao: true
+    };
+
+    obstaculos = [];
+    estrelas = [];
+
+    pontosMidas = 0;
+    velocidade = 4;
+    jogando = true;
+
+    document.getElementById("pontuacaoMidas").textContent =
+        "Pontos: 0";
+
+    atualizarMidas();
+}
+
+function pular() {
+    if (jogando && midas.noChao) {
+        midas.velocidadeY = -12;
+        midas.noChao = false;
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.code === "Space" && jogando) {
+        event.preventDefault();
+        pular();
+    }
+});
+
+function desenharMidas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#72c66c";
+    ctx.fillRect(0, 220, 700, 40);
+
+    // Corpo
+    ctx.fillStyle = "#172d50";
+    ctx.fillRect(midas.x, midas.y, midas.largura, midas.altura);
+
+    // Cabeça
+    ctx.fillStyle = "#d99b70";
+    ctx.fillRect(midas.x + 6, midas.y - 20, 25, 23);
+
+    // Cabelo e moicano
+    ctx.fillStyle = "#202020";
+    ctx.fillRect(midas.x + 7, midas.y - 24, 23, 8);
+    ctx.fillRect(midas.x + 15, midas.y - 34, 7, 12);
+
+    // Número 9
+    ctx.fillStyle = "#35a4ff";
+    ctx.font = "bold 17px Arial";
+    ctx.fillText("9", midas.x + 11, midas.y + 32);
+
+    ctx.fillStyle = "#d84b4b";
+
+    obstaculos.forEach(o => {
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+    });
+
+    ctx.fillStyle = "#f3b900";
+
+    estrelas.forEach(e => {
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, 9, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    ctx.fillStyle = "#173d70";
+    ctx.font = "bold 18px Arial";
+    ctx.fillText("⭐ " + pontosMidas, 570, 30);
+}
+
+function atualizarMidas() {
+    if (!jogando) return;
+
+    midas.velocidadeY += 0.6;
+    midas.y += midas.velocidadeY;
+
+    if (midas.y >= 170) {
+        midas.y = 170;
+        midas.velocidadeY = 0;
+        midas.noChao = true;
+    }
+
+    if (Math.random() < 0.018) {
+        obstaculos.push({
+            x: 700,
+            y: 190,
+            w: 25,
+            h: 30
+        });
+    }
+
+    if (Math.random() < 0.012) {
+        estrelas.push({
+            x: 700,
+            y: 145 + Math.random() * 35
+        });
+    }
+
+    obstaculos.forEach(o => {
+        o.x -= velocidade;
+    });
+
+    estrelas.forEach(e => {
+        e.x -= velocidade;
+    });
+
+    // Colisão
+    for (const o of obstaculos) {
+        if (
+            midas.x < o.x + o.w &&
+            midas.x + midas.largura > o.x &&
+            midas.y < o.y + o.h &&
+            midas.y + midas.altura > o.y
+        ) {
+            jogando = false;
+
+            document.getElementById("pontuacaoMidas").textContent =
+                "Fim de jogo! Pontuação: " + pontosMidas;
+
+            return;
+        }
+    }
+
+    // Coletar estrelas
+    estrelas = estrelas.filter(e => {
+        const distancia = Math.hypot(
+            midas.x + 17 - e.x,
+            midas.y + 20 - e.y
+        );
+
+        if (distancia < 28) {
+            pontosMidas += 5;
+
+            document.getElementById("pontuacaoMidas").textContent =
+                "Pontos: " + pontosMidas;
+
+            return false;
+        }
+
+        return e.x > -20;
+    });
+
+    obstaculos = obstaculos.filter(o => o.x > -40);
+
+    velocidade = Math.min(4 + pontosMidas / 100, 8);
+
+    desenharMidas();
+
+    frame = requestAnimationFrame(atualizarMidas);
+}
+
+// ===================================
+// INICIALIZAÇÃO
+// ===================================
+
+atualizarPerfil();
+
+</script>
+
+</body>
+</html>
